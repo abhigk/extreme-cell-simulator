@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react'
+import { ChakraProvider, Box, VStack, Grid, extendTheme, Button, ThemeConfig } from '@chakra-ui/react'
+import MainGrid from './components/MainGrid'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const config: ThemeConfig = {
+    initialColorMode: 'dark',
+    useSystemColorMode: false,
 }
 
-export default App;
+const theme = extendTheme({ config })
+
+export default theme
+export const App = () => (
+  <ChakraProvider theme={theme}>
+    <Box textAlign="center" fontSize="xl">
+      <Grid minH="100vh" p={3}>
+        <VStack spacing={8}>
+          <Box>
+            <MainGrid />
+          </Box>
+        </VStack>
+      </Grid>
+    </Box>
+  </ChakraProvider>
+)
